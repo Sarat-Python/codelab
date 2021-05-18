@@ -1,0 +1,27 @@
+import pandas as pd
+import numpy as np
+from datetime import datetime
+import datetime as dt
+
+df = pd.DataFrame.from_csv('test.csv')
+a = df['time'].tolist()
+print(a[0])
+
+d = datetime.strptime(a[0], '%H:%M') 
+e = datetime.strptime(a[1], '%H:%M') 
+time_zero = dt.datetime.strptime('00:00:00', '%H:%M:%S')
+f = (d - time_zero + e).time()
+lst =[]
+lst.append(f)
+
+sc_hlf = datetime.strptime(a[2], '%H:%M')
+sc_hlf2 = datetime.strptime(a[3], '%H:%M')  
+time_zero = dt.datetime.strptime('00:00:00', '%H:%M:%S')
+sc_res = (sc_hlf - time_zero + sc_hlf2).time()
+lst.append(sc_res)
+
+u = lst[0].strftime("%H:%M")
+w = lst[1].strftime("%H:%M") 
+v =u+w
+print(v)
+
